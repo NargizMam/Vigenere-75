@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {Message} from "../../type";
+import {Message} from "../../types";
 import {decodeMessage, encodeMessage} from "./CodesThunk";
 import {RootState} from "../../app/store";
 

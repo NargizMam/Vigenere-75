@@ -1,6 +1,5 @@
 const Vigenere = require('caesar-salad').Vigenere;
 import express from "express";
-
 import {Message} from "../types";
 
 const codesRouter = express.Router();

@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import AppToolbar from "../../components/AppToolBar/AppToolbar";
 import {Button, Container, Grid, TextField, Typography} from "@mui/material";
 import Textarea from "../../components/Textarea/Textarea";
 import VerticalAlignBottomIcon from '@mui/icons-material/VerticalAlignBottom';
 import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {decodeMessage, encodeMessage} from "./CodesThunk";
-import {selectMessage} from "./CodesSlice";
-
+import {selectLoading, selectMessage} from "./CodesSlice";
+import { LoadingButton } from '@mui/lab';
 
 const Codes = () => {
     const initialMessage = {
@@ -17,6 +16,7 @@ const Codes = () => {
     }
     const dispatch = useAppDispatch();
     const message = useAppSelector(selectMessage);
+    const loading = useAppSelector(selectLoading);
     const [state, setState] = useState(initialMessage);
     const onInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
@@ -36,7 +36,6 @@ const Codes = () => {
 
     return (
         <>
-            <AppToolbar/>
             <Container>
                 <Grid maxWidth="md"
                       rowSpacing={2}
@@ -62,9 +61,13 @@ const Codes = () => {
                                 value={state.password}
                             />
                         </Grid>
-                        <Button variant="outlined" type="submit">
-                            Down
+                        <LoadingButton loading={loading}/>
+                        <Button variant="outlined"
+                                type="submit"
+                                disabled={state.decodeText === ''}
+                        >
                             <VerticalAlignBottomIcon/>
+                            Down
                         </Button>
                         <Textarea label='and password decode'
                                   name='encodeText'
@@ -73,15 +76,16 @@ const Codes = () => {
                         />
 
                     </form>
+                    <LoadingButton loading={loading}/>
                     <Button variant="outlined"
                             onClick={onDecodeMessage}
+                            disabled={state.encodeText === ''}
+
                     >
-                        UPP
                         <VerticalAlignTopIcon/>
+                        UPP
                     </Button>
-
                 </Grid>
-
             </Container>
         </>
     );

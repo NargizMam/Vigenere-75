@@ -44,6 +44,7 @@ export const CodesSlice = createSlice({
     }
 });
 
-export const selectCodes = CodesSlice.reducer;
+export const codesReducer = CodesSlice.reducer;
 export const selectMessage = (state: RootState) => state.codes.messages;
+export const selectLoading = (state: RootState) => state.codes.loading;
 

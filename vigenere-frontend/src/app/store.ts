@@ -1,9 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {selectCodes} from "../features/Codes/CodesSlice";
+import {codesReducer} from "../features/Codes/CodesSlice";
 
 export const store = configureStore({
   reducer: {
-    codes: selectCodes
+    codes: codesReducer
   }
 });
 

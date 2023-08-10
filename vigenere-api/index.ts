@@ -11,7 +11,7 @@ app.use('/messages', codesRouter);
 
 const run =async () => {
     app.listen(port, () => {
-        console.log('We are live on ' + port + 'port');
+        console.log('Server started on port ' + port + ' !');
     });
 };
 

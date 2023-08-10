@@ -1,5 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import axiosApi from "../../axios";
+import axiosApi from "../../axiosApi";
+import {Message} from "../../types";
+
 
 export const encodeMessage = createAsyncThunk<Message, Message>(
     'messages/encode',
